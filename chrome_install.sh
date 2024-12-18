@@ -38,7 +38,7 @@ Description=X-Window
 
 [Service]
 Type=simple
-ExecStart=/bin/su --login tdl -c "/usr/bin/startx -- :10 vt1 -ac -nolisten tcp"
+ExecStart=/bin/su --login tdl -c "/usr/bin/startx -- :0 vt1 -ac -nolisten tcp"
 Restart=on-failure
 RestartSec=5
 
@@ -46,8 +46,8 @@ RestartSec=5
 WantedBy=default.target
 EOF
 
-echo 'exec xterm' > /root/.xinitrc;
-echo 'exec xterm' > /home/tdl/.xinitrc;
+echo 'exec google-chrome --no-sandbox' > /root/.xinitrc;
+echo 'exec google-chrome --no-sandbox' > /home/tdl/.xinitrc;
 systemctl enable -q --now xorg.service
 
 echo "install chrome"
