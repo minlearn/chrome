@@ -3,7 +3,7 @@
 silent() { "$@" >/dev/null 2>&1; }
 
 echo "Installing Dependencies"
-silent apt-get install -y curl sudo mc
+silent apt-get install -y curl sudo mc gnupg
 echo "Installed Dependencies"
 
 echo "installing x11 supports"
@@ -51,7 +51,6 @@ echo 'exec google-chrome --no-sandbox' > /home/tdl/.xinitrc;
 systemctl enable -q --now xorg.service
 
 echo "install chrome"
-silent apt-get install gnupg -y
 curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 silent apt-get update
